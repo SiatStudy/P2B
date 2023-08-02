@@ -11,17 +11,18 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/member")
 public class MemberController {
     // 생성자 주입
     private final MemberService memberService;
 
     // 회원가입 페이지 출력 요청
-    @GetMapping("/member/join")
+    @GetMapping("/join")
     public String joinForm() {
         return "join";
     }
 
-    @PostMapping("/member/join")
+    @PostMapping("/join")
     public String join(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("MemberController.join");
         System.out.println("memberDTO = " + memberDTO);
@@ -29,12 +30,12 @@ public class MemberController {
         return "login";
     }
 
-    @GetMapping("/member/login")
+    @GetMapping("/login")
     public String loginForm() {
         return "login";
     }
 
-    @GetMapping("/member/main")
+    @GetMapping("/main")
     public String mainPage(HttpSession session, Model model) {
         String sessionId = session.getId();
         model.addAttribute("sessionId", sessionId);
@@ -52,14 +53,14 @@ public class MemberController {
 //        return "list";
 //    }
 
-    @GetMapping("/member/{id}")
+    @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
         MemberDTO memberDTO = memberService.findById(id);
         model.addAttribute("member", memberDTO);
         return "detail";
     }
 
-    @GetMapping("/member/update")
+    @GetMapping("/update")
     public String updateForm(HttpSession session, Model model) {
         String myEmail = (String) session.getAttribute("loginEmail");
         MemberDTO memberDTO = memberService.updateForm(myEmail);
@@ -67,25 +68,25 @@ public class MemberController {
         return "update";
     }
 
-    @PostMapping("/member/update")
+    @PostMapping("/update")
     public String update(@ModelAttribute MemberDTO memberDTO) {
         memberService.update(memberDTO);
         return "redirect:/member/" + memberDTO.getId();
     }
 
-    @GetMapping("/member/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
         memberService.deleteById(id);
         return "redirect:/member/";
     }
 
-    @GetMapping("/member/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "index";
     }
 
-    @PostMapping("/member/id-check")
+    @PostMapping("/id-check")
     public @ResponseBody String idCheck(@RequestParam("memberId") String memberId) {
         System.out.println("memberId = " + memberId);
         String checkResult = memberService.idCheck(memberId);
@@ -97,7 +98,7 @@ public class MemberController {
 //        }
     }
 
-    @PostMapping("/member/email-check")
+    @PostMapping("/email-check")
     public @ResponseBody String emailCheck(@RequestParam("memberEmail") String memberEmail) {
         System.out.println("memberEmail = " + memberEmail);
         String checkResult = memberService.emailCheck(memberEmail);
@@ -109,24 +110,24 @@ public class MemberController {
 //        }
     }
 
-    @GetMapping("/member/find-id")
+    @GetMapping("/find-id")
     public String findIdForm() {
         return "findId";
     }
 
-    @PostMapping("/member/find-id")
+    @PostMapping("/find-id")
     public String findId(@RequestParam("memberEmail") String memberEmail, Model model) {
         String memberId = memberService.findIdByEmail(memberEmail);
         model.addAttribute("foundId", memberId);
         return "findIdResult";
     }
 
-    @GetMapping("/member/find-password")
+    @GetMapping("/find-password")
     public String findPasswordForm() {
         return "findPassword";
     }
 
-    @PostMapping("/member/find-password")
+    @PostMapping("/find-password")
     public String findPassword(@RequestParam("memberId") String memberId, @RequestParam("memberEmail") String memberEmail, Model model) {
         boolean isFound = memberService.checkMemberIdAndEmail(memberId, memberEmail);
         if (isFound) {
@@ -137,7 +138,7 @@ public class MemberController {
         }
     }
 
-    @PostMapping("/member/change-password")
+    @PostMapping("/change-password")
     public String changePassword(@RequestParam("memberId") String memberId, @RequestParam("newPassword") String newPassword) {
         memberService.changePassword(memberId, newPassword);
         return "passwordChanged";
