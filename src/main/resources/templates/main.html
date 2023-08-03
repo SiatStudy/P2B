@@ -10,14 +10,11 @@
 <th:block th:if ="${sessionId} != null">
 <a th:href="@{/users/update}">내 정보 수정하기</a>
 <a th:href="@{/users/logout}">로그아웃</a>
-<a th:href="@{/todos/item}">할일 추가하기</a>
-<a th:href="@{/todos/2023}">23년도 불러오기</a>
-<a th:href="@{/todos/2024}">24년도 불러오기</a>
 </th:block>
 <th:block th:if ="${sessionId} == null">
     <a th:href="@{/login/login}">로그인 페이지로</a>
 </th:block>
 <hr/>
-
+<a href="/save">상품 추가하기</a>
 </body>
 </html>
