@@ -1,6 +1,6 @@
 package com.example.p2b.service;
 
-import com.example.p2b.domain.Member;
+import com.example.p2b.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,28 +8,32 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+
+// 작업자 : 장재형
 public class CustomizeUserDetails implements UserDetails {
 
-    private final Member member;
+    private final User user;
 
-    public CustomizeUserDetails(Member member) {
-        this.member = member;
+    public CustomizeUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(member.getRole().name()));
+        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole().name()));
     }
 
     @Override
     public String getPassword() {
-        return member.getMemberPassword();
+        return user.getUserPassword();
     }
 
     @Override
     public String getUsername() {
-        return member.getMemberId();
+        return user.getUsername();
     }
+
+    public User getUser(){return user;}
 
     @Override
     public boolean isAccountNonExpired() {
@@ -50,4 +54,6 @@ public class CustomizeUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
