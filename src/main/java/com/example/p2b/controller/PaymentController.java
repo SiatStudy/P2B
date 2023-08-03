@@ -14,7 +14,7 @@ public class PaymentController {
         return "payment";
     }
 
-    @GetMapping("/member/success")
+    @GetMapping("/success")
     public String success(){
         return "success";
     }
