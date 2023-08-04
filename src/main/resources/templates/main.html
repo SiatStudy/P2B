@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>main</title>
 </head>
 <body>
 세션 값 확인: <p th:text="${sessionId}"></p>
-<a th:href="@{/member/update}">내 정보 수정하기</a>
-<a th:href="@{/member/logout}">로그아웃</a>
+<th:block th:if ="${sessionId} != null">
+<a th:href="@{/users/update}">내 정보 수정하기</a>
+<a th:href="@{/users/logout}">로그아웃</a>
+</th:block>
+<th:block th:if ="${sessionId} == null">
+    <a th:href="@{/login/login}">로그인 페이지로</a>
+</th:block>
 <hr/>
-<a href="payment">결제창가기</a>
-<a href="success">성공창</a>
+<a href="/main/category?category=1">호텔</a>
+<a href="/main/category?category=2">모텔</a>
+<a href="/main/category?category=3">펜션</a>
+<a href="/main/category?category=4">리조트</a><br/>
+<a href="/main/location?location=1">서울</a>
+<a href="/main/location?location=2">인천</a>
+<a href="/main/location?location=3">대전</a>
+<a href="/main/location?location=4">대구</a>
+<a href="/main/location?location=5">광주</a>
+<a href="/main/location?location=6">울산</a>
+<a href="/main/location?location=7">부산</a>
+<a href="/main/location?location=8">제주</a>
+<a href="/main/location?location=9">경기</a>
+<a href="/main/location?location=10">강원</a>
+<a href="/main/location?location=11">충북</a>
+<a href="/main/location?location=12">충남</a>
+<a href="/main/location?location=13">전북</a>
+<a href="/main/location?location=14">전남</a>
+<a href="/main/location?location=15">경북</a>
+<a href="/main/location?location=16">경남</a>
 </body>
 </html>

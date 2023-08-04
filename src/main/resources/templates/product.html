@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product List</title>
+</head>
+<body>
+<h1>Product List by Location</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Address</th>
+    <th>Telephone</th>
+    <th>Local</th>
+    <th>Point</th>
+    <th>Price</th>
+    <th>Wedding Price</th>
+  </tr>
+  <!-- locationList를 모델에서 가져와서 테이블로 표시합니다 -->
+  <tr th:each="product : ${locationList}">
+    <td th:text="${product.pdname}"></td>
+    <td th:text="${product.pdtype}"></td>
+    <td th:text="${product.pdaddr}"></td>
+    <td th:text="${product.pdtel}"></td>
+    <td th:text="${product.pdlocal}"></td>
+    <td th:text="${product.pdpoint}"></td>
+    <td th:text="${product.pdprice}"></td>
+    <td th:text="${product.pdwedprice}"></td>
+  </tr>
+</table>
+
+<h1>Product List by Category</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Address</th>
+    <th>Telephone</th>
+    <th>Local</th>
+    <th>Point</th>
+    <th>Price</th>
+    <th>Wedding Price</th>
+  </tr>
+  <!-- categoryList를 모델에서 가져와서 테이블로 표시합니다 -->
+  <tr th:each="product : ${categoryList}">
+    <td th:text="${product.pdname}"></td>
+    <td th:text="${product.pdtype}"></td>
+    <td th:text="${product.pdaddr}"></td>
+    <td th:text="${product.pdtel}"></td>
+    <td th:text="${product.pdlocal}"></td>
+    <td th:text="${product.pdpoint}"></td>
+    <td th:text="${product.pdprice}"></td>
+    <td th:text="${product.pdwedprice}"></td>
+  </tr>
+</table>
+</body>
+</html></html>

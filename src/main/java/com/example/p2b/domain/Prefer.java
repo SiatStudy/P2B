@@ -27,9 +27,31 @@ public class Prefer {
     @Column(name = "PRODUCT_TEL")
     private String pdtel;
 
+    @Column(name = "PRODUCT_LOCAL")
+    private int pdlocal;
+
     @Column(name = "PRODUCT_POINT")
-    private int pdpoint;
+    private float pdpoint;
 
     @Column(name = "PRODUCT_PRICE")
     private int pdprice;
+
+    @Column(name = "PRODUCT_WED_PRICE")
+    private int pdwedprice;
+
+    @ManyToOne
+    @JoinColumn(name = "mem_id")
+    private User user;
+
+    public Prefer(String pdname, int pdtype, String pdaddr, String pdtel, int pdlocal, float pdpoint, int pdprice, int pdwedprice, User user) {
+        this.pdname = pdname;
+        this.pdtype = pdtype;
+        this.pdaddr = pdaddr;
+        this.pdtel = pdtel;
+        this.pdlocal = pdlocal;
+        this.pdpoint = pdpoint;
+        this.pdprice = pdprice;
+        this.pdwedprice = pdwedprice;
+        this.user = user;
+    }
 }
