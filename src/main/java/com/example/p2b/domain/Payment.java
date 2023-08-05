@@ -27,9 +27,5 @@ public class Payment {
 
     @ManyToOne
     @JoinColumn(name = "mem_id")
-    private Member member;
-
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID")
-    private Product product;
+    private User user;
 }

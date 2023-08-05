@@ -13,7 +13,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PRODUCT_ID")
-    private Long pmid;
+    private Long pdid;
 
     @Column(name = "PRODUCT_NAME")
     private String pdname;
@@ -31,7 +31,7 @@ public class Product {
     private int pdlocal;
 
     @Column(name = "PRODUCT_POINT")
-    private int pdpoint;
+    private float pdpoint;
 
     @Column(name = "PRODUCT_PRICE")
     private int pdprice;

@@ -51,4 +51,9 @@ public class MainController {
 //        preferService.addPrefer(String pdname, int pdtype, String pdaddr, String pdtel, int pdlocal, float pdpoint, int pdprice, int pdwedprice, User user);
 //        return "redirect:/main";
 //    }
+
+    @GetMapping("/payment")
+    public String paymentPage(){
+        return "payment";
+    }
 }

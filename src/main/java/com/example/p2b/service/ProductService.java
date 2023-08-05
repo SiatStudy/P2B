@@ -22,13 +22,20 @@ public class ProductService {
     public List<Product> findProductLocation(int location){
         List<Product> locationList = productRepository.findByPdlocal(location);
         return locationList;
+    }
 
-    }public List<Product> findProductName(String item){
+    public List<Product> findProductName(String item){
         List<Product> itemList = productRepository.findByPdnameContaining(item);
         return itemList;
+    }
 
-    }public List<Product> findProductId(Long id){
+    public List<Product> findProductId(Long id){
         List<Product> productList = productRepository.findByPdid(id);
         return productList;
+    }
+
+    public int findProductPrice(String name){
+        int productPrice = productRepository.findByPdname(name).getPdprice();
+        return productPrice;
     }
 }
