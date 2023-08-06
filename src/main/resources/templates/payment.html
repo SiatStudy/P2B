@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+</head>
+<body>
+    <button onclick="requestPay()">결제하기</button>
+    <script>
+        function requestPay() {
+        IMP.init('imp28240265');
+        // IMP.request_pay(param, callback) 결제창 호출
+        IMP.request_pay({ // param
+            pg: "kakaopay.TC0ONETIME",                         // 결제 필수 데이터1 : 결제대행사(toss, kakao 등)
+            pay_method: "card",
+            merchant_uid: 'cart_' + new Date().getTime(),
+            name: "고양 스테이 월 호텔",                       // 결제 필수 데이터2 : 상품 이름
+            amount: 45000,                                     // 결제 필수 데이터3 : 상품 가격
+            buyer_email: "leekjgo21@naver.com",
+            buyer_name: "이건주",                              // DB저장 필수 데이터 : 유저 이름
+
+        }, function (rsp) { // callback
+            console.log(rsp);
+            $.ajax({
+                // 결제 검증 요청
+                type: 'POST',
+                url: '/payment',
+                data: {
+                    // 요청 데이터
+                    name: rsp.name,             // 상품 이름
+                    amount: rsp.paid_amount     // 상품 가격
+                }
+            }).done(function(result){
+                // 위의 payment 요청에서 받은 결과값이 result에 저장 true or false
+                if(result){
+                    let msg = '결제가 완료되었습니다. ';
+                    msg += '고유ID : ' + rsp.imp_uid;
+                    msg += ' 상점 거래ID : ' + rsp.merchant_uid;
+                    msg += ' 결제 금액 : ' + rsp.paid_amount;
+                    msg += ' 카드 승인번호 : ' + rsp.apply_num;
+                    alert(msg);
+                    $.ajax({
+                        // 결제가 성공 했으므로 DB에 저장과 페이지 이동 요청
+                        type:'POST',
+                        url:'/payment/success',
+                        data: {
+                            // DB에 저장할 데이터 전송
+                            username:rsp.buyer_name,    // 유저 이름
+                            pdname: rsp.name,           // 상품 이름
+                            amount: rsp.paid_amount     // 상품 가격
+                        }
+                    }).fail(function(error){
+                        alert(JSON.stringify(error));
+                    })
+                } else{
+                    alert("결제에 실패했습니다."+"에러코드 : "+rsp.error_code+"에러 메시지 : "+rsp.error_message);
+
+                }
+            })
+        })
+    }
+    </script>
+</body>
+</html>
