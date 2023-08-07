@@ -38,4 +38,9 @@ public class ProductService {
         int productPrice = productRepository.findByPdname(name).getPdprice();
         return productPrice;
     }
+
+    public Product findProduct(String pdname){
+        Product product = productRepository.findByPdname(pdname);
+        return product;
+    }
 }

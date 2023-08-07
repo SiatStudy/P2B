@@ -50,7 +50,8 @@ public class MainController {
     @PostMapping("/prefer")
     public String addPrefer(String pdname, User user){
         // pdname으로 DB에서 모든 상품 정보 받아와서 addPrefer를 통해 저장
-//        preferService.addPrefer();
+        Product product =  productService.findProduct(pdname);
+        preferService.addPrefer(product.getPdname(), product.getPdtype(), product.getPdaddr(), product.getPdtel(), product.getPdlocal(), product.getPdpoint(), product.getPdprice(), product.getPdwedprice(), user);
         return "redirect:/main";
     }
 

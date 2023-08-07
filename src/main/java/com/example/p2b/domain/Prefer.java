@@ -31,7 +31,7 @@ public class Prefer {
     private int pdlocal;
 
     @Column(name = "PRODUCT_POINT")
-    private float pdpoint;
+    private double pdpoint;
 
     @Column(name = "PRODUCT_PRICE")
     private int pdprice;
@@ -43,7 +43,7 @@ public class Prefer {
     @JoinColumn(name = "mem_id")
     private User user;
 
-    public Prefer(String pdname, int pdtype, String pdaddr, String pdtel, int pdlocal, float pdpoint, int pdprice, int pdwedprice, User user) {
+    public Prefer(String pdname, int pdtype, String pdaddr, String pdtel, int pdlocal, double pdpoint, int pdprice, int pdwedprice, User user) {
         this.pdname = pdname;
         this.pdtype = pdtype;
         this.pdaddr = pdaddr;
