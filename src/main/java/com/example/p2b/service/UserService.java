@@ -76,6 +76,7 @@ public class UserService {
 
     public User findUser(String username){
         Optional<User> result = userRepository.findByUsername(username);
+        System.out.println("result : " + result.get());
         return result.get();
     }
 

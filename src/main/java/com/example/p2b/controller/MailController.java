@@ -1,10 +1,15 @@
 package com.example.p2b.controller;
 
+import com.example.p2b.domain.Email;
 import com.example.p2b.dto.MailDTO;
+import com.example.p2b.repository.EmailRepository;
 import com.example.p2b.service.EmailService;
+import com.example.p2b.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,23 +17,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/api/mail")
 public class MailController {
 
     private final EmailService emailService;
-
-    public MailController(EmailService emailService) {
-        this.emailService = emailService;
-    }
+    private final UserService userService;
 
     @GetMapping("/send")
     public String main() {
         return "SendMail.html";
     }
 
+
     @PostMapping("/send")
     public @ResponseBody ResponseEntity<Map<String, Boolean>> sendMail(@Validated
-                                           @RequestBody MailDTO mailDto) {
+                                                                       @RequestBody MailDTO mailDto) {
         System.out.println("sendMail 실행 확인");
         System.out.println("address : " + mailDto.getAddress());
         System.out.println("title : " + mailDto.getTitle());
@@ -54,5 +58,11 @@ public class MailController {
         return entity;
 //        return mailDto;
     }
+
+//    @PostMapping("/check")
+//    public ResponseEntity<Map> checkCode(@RequestBody("code") String code){
+//
+//        return new ResponseEntity<Map>()
+//    }
 
 }

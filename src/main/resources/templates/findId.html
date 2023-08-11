@@ -5,10 +5,8 @@
   <title>아이디 찾기</title>
 </head>
 <body>
-<form th:action="@{/login/search/id}" method="post">
   <label>이메일 : </label>
-  <input type="email" name="userEmail" required>
-  <button type="submit">아이디 찾기</button>
-</form>
+  <input type="email" id="userEmail" required>
+  <button type="submit" onclick="test()">아이디 찾기</button>
 </body>
 </html>

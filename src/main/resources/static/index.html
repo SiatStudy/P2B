@@ -2,17 +2,123 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landing</title>
+    <style>
+        @import url('https://webfontworld.github.io/Cafe24Classictype/Cafe24ClassicType.css');
+        @import url('https://fonts.googleapis.com/css?family=Exo+2|Noto+Sans+KR&display=swap');
+
+        @font-face {
+            font-family: 'Cafe24ClassicType';
+            font-weight: normal;
+            font-style: normal;
+            src: url('https://cdn.jsdelivr.net/gh/webfontworld/Cafe24Classictype/Cafe24ClassicType.eot');
+            src: url('https://cdn.jsdelivr.net/gh/webfontworld/Cafe24Classictype/Cafe24ClassicType.eot?#iefix') format('embedded-opentype'),
+            url('https://cdn.jsdelivr.net/gh/webfontworld/Cafe24Classictype/Cafe24ClassicType.woff2') format('woff2'),
+            url('https://cdn.jsdelivr.net/gh/webfontworld/Cafe24Classictype/Cafe24ClassicType.woff') format('woff'),
+            url('https://cdn.jsdelivr.net/gh/webfontworld/Cafe24Classictype/Cafe24ClassicType.ttf') format("truetype");
+            font-display: swap;
+        }
+
+        /* reset */
+        li {list-style: none;}
+        a{text-decoration: none; color: inherit;}
+
+
+                       /*section.main*/
+       section.main {width: 100%; height: 100vh; background: url(./img/vis_6.jpg)no-repeat center/cover; position: relative; background-attachment: fixed;}
+        section.main .mainTitle {position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); color: #fff; text-align: center; text-shadow: 0 0 5px rgba(8, 8, 8, 0.5); animation-name: mainTitle; animation-duration: 1s;}
+        @keyframes mainTitle {
+            0%{opacity: 0; top: 60%;}
+            30%{opacity: 0; top: 60%;}
+            100%{opacity: 1; top: 50%;}
+        }
+        section.main .mainTitle h2{font-family: 'cafe24ClassicType',sans-serif; font-size: 55px; margin-bottom: 20px;}
+        section.main .mainTitle p {font-size: 25px; margin-bottom: 30px;}
+        section.main .mainTitle .view {color: #fff; display: block; width: 180px; margin: 0 auto; padding: 8px 0;font-size:15px; text-transform: uppercase; letter-spacing: 1px; border: 2px solid #fff; border-radius: 40px; position: relative; overflow: hidden;}
+        section.main .mainTitle .view:after {content: ''; width:0; height: 100%; color: #4D675C; background:  rgba(255, 255, 255, 0.4);  position: absolute; left: 0; top: 0;}
+        section.main .mainTitle .view:hover:after {width: 100%; transition: all 0.3s;}
+
+        html {
+            font-family: 'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
+            color: #555;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+        body {
+            background: #eee;
+            -webkit-font-smoothing: antialiased;
+        }
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        div, span, article, section, header, footer, aside, p, ul, li, fieldset, legend, label, a, nav, form {
+            box-sizing: border-box;
+            /* content-box */
+        }
+        ol, ul, li {
+            list-style: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 0;
+        }
+        a {
+            display: inline-block;
+        }
+        button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .flex-container {
+            /* padding: 10px; */
+            background: lightgray;
+        }
+        .flex-item {
+            padding: 10px;
+            border: 3px solid rgb(50,50,40);
+            color: white;
+            background: mediumseagreen;
+        }
+
+
+    </style>
 </head>
 <body>
-<h1>메인 페이지</h1>
-<ul>
-    <li><a href="/users/Signup">회원 가입 페이지</a></li>
-    <li><a href="/Mypage/MypageInfo">마이 페이지</a></li>
-</ul>
-<hr/>
-<h2>임시 페이지 입니다</h2>
-<h3>업데이트를 기대해주세요</h3>
-<img src="/imgs/BnMVODzCQAAqfB5.jpg" alt="기다려주세요!">
+<div id="wrapper">
+    <!--section.main-->
+    <section class="main">
+        <div class="mainTitle">
+            <h2 class="en">Memorable Voyages</h2>
+            <p>"추억을 만들어가는 멋진 여행"</p>
+            <a href="/mainpage" class="view en">get Started</a>
+        </div>
+    </section>
+    <!--//section. main -->
+</div>
 </body>
 </html>

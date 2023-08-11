@@ -7,10 +7,7 @@ import com.example.p2b.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,19 +19,18 @@ public class MainController {
     private final PreferService preferService;
 
     @GetMapping("/location")
-    public String mainPageByLocation(@RequestParam("location") int location,
-                                     Model model){
+    public @ResponseBody List<Product> mainPageByLocation(@RequestParam("location") int location){
         List<Product> locationList = productService.findProductLocation(location);
-        model.addAttribute("locationList", locationList);
-        return "product";
+        return locationList;
     }
 
     @GetMapping("/category")
-    public String mainPageByCategory(@RequestParam("category") int category,
-                                     Model model){
+    public @ResponseBody List<Product> mainPageByCategory(@RequestParam("category") int category){
+        System.out.println("cate : " + category);
         List<Product> categoryList = productService.findProductCategory(category);
-        model.addAttribute("categoryList", categoryList);
-        return "product";
+        List<Product> firstTenProducts = categoryList.subList(0, Math.min(categoryList.size(), 10));
+        System.out.println("fList : " + firstTenProducts);
+        return firstTenProducts;
     }
 
     @GetMapping("/item")

@@ -56,13 +56,13 @@ public class UsersController {
         return "update";
     }
 
-    @PostMapping("/update")
+    @PatchMapping("/info")
     public String update(@ModelAttribute UserDTO userDTO) {
         userService.update(userDTO);
         return "redirect:/users/" + userDTO.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/info")
     public String deleteById(@PathVariable Long id) {
         userService.deleteById(id);
         return "redirect:/users/";

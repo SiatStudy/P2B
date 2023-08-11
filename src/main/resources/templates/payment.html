@@ -21,7 +21,7 @@
             name: "고양 스테이 월 호텔",                       // 결제 필수 데이터2 : 상품 이름
             amount: 45000,                                     // 결제 필수 데이터3 : 상품 가격
             buyer_email: "leekjgo21@naver.com",
-            buyer_name: "이건주",                              // DB저장 필수 데이터 : 유저 이름
+            buyer_id: "leekj21",                              // DB저장 필수 데이터 : 유저 아이디
 
         }, function (rsp) { // callback
             console.log(rsp);
@@ -31,7 +31,7 @@
                 url: '/payment',
                 data: {
                     // 요청 데이터
-                    name: rsp.name,             // 상품 이름
+                    pdname: rsp.name,           // 상품 이름
                     amount: rsp.paid_amount     // 상품 가격
                 }
             }).done(function(result){
@@ -49,7 +49,7 @@
                         url:'/payment/success',
                         data: {
                             // DB에 저장할 데이터 전송
-                            username:rsp.buyer_name,    // 유저 이름
+                            userid: rsp.buyer_name,     // 유저 아이디
                             pdname: rsp.name,           // 상품 이름
                             amount: rsp.paid_amount     // 상품 가격
                         }
@@ -58,7 +58,6 @@
                     })
                 } else{
                     alert("결제에 실패했습니다."+"에러코드 : "+rsp.error_code+"에러 메시지 : "+rsp.error_message);
-
                 }
             })
         })
