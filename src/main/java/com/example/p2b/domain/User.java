@@ -49,12 +49,6 @@ public class User {
     @Column(name = "MEM_RESIGNED")
     private String memResigned = "N";
 
-    @OneToMany(mappedBy = "user")
-    private List<Email> vrid = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    private List<Payment> pmid = new ArrayList<>();
-
     public enum Role{
         USER, ANONYMOUS
     }
@@ -63,9 +57,9 @@ public class User {
     public static User toUser(UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.getUsername());
-        user.setUserPassword(userDTO.getUserPassword());
-        user.setUserNickName(userDTO.getUserNickName());
-        user.setUserEmail(userDTO.getUserEmail());
+        user.setUserPassword(userDTO.getUserpassword());
+        user.setUserNickName(userDTO.getUsernickname());
+        user.setUserEmail(userDTO.getUseremail());
         return user;
     }
 
@@ -73,9 +67,9 @@ public class User {
         User user = new User();
         user.setId(userDTO.getId());
         user.setUsername(userDTO.getUsername());
-        user.setUserPassword(userDTO.getUserPassword());
-        user.setUserNickName(userDTO.getUserNickName());
-        user.setUserEmail(userDTO.getUserEmail());
+        user.setUserPassword(userDTO.getUserpassword());
+        user.setUserNickName(userDTO.getUsernickname());
+        user.setUserEmail(userDTO.getUseremail());
         return user;
     }
 }

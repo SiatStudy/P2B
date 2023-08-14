@@ -11,9 +11,9 @@ import lombok.*;
 public class UserDTO {
     private Long id;
     private String username;
-    private String userPassword;
-    private String userNickName;
-    private String userEmail;
+    private String userpassword;
+    private String usernickname;
+    private String useremail;
     private User user;
     private User.Role role;
 
@@ -21,9 +21,9 @@ public class UserDTO {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
-        userDTO.setUserPassword(user.getUserPassword());
-        userDTO.setUserNickName(user.getUserNickName());
-        userDTO.setUserEmail(user.getUserEmail());
+        userDTO.setUserpassword(user.getUserPassword());
+        userDTO.setUsernickname(user.getUserNickName());
+        userDTO.setUseremail(user.getUserEmail());
         userDTO.setUser(user);
         return userDTO;
     }

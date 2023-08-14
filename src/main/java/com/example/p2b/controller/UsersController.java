@@ -3,6 +3,8 @@ package com.example.p2b.controller;
 import com.example.p2b.dto.UserDTO;
 import com.example.p2b.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,18 +20,13 @@ public class UsersController {
 
     private final UserService userService;
 
-    // 회원가입 페이지 출력 요청
-    @GetMapping("/signup")
-    public String signUpForm() {
-        return "signup";
-    }
-
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute UserDTO userDTO) {
-        System.out.println("UserController.signUp");
-        System.out.println("userDTO = " + userDTO);
+    public ResponseEntity<Boolean> signUp(@RequestBody UserDTO userDTO) {
+        System.out.println("-----------userDTO username : " + userDTO.getUsername());
+        System.out.println("-----------userDTO useremail : " + userDTO.getUseremail());
+        System.out.println("-----------userDTO usernickname : " + userDTO.getUsernickname());
         userService.signUp(userDTO);
-        return "login";
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     @GetMapping("/main")

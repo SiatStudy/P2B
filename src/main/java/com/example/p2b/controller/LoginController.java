@@ -2,6 +2,7 @@ package com.example.p2b.controller;
 
 import com.example.p2b.domain.User;
 import com.example.p2b.dto.LoginDTO;
+import com.example.p2b.dto.SignupDTO;
 import com.example.p2b.exception.UserNotFoundException;
 import com.example.p2b.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +23,13 @@ public class LoginController {
 
     private final UserService userService;
 
-    @GetMapping("/login")
-    public String loginForm() {
-        return "login";
-    }
     @PostMapping("/duple/id")
-    public @ResponseBody boolean idCheck(@RequestBody String username) {
-        return !userService.idCheck(username);
+    public ResponseEntity<Boolean> idCheck(@RequestBody SignupDTO signupDTO) {
+        String username = signupDTO.getUsername();
+
+        boolean isIdUnique = userService.idCheck(username);
+
+        return new ResponseEntity<>(isIdUnique, HttpStatus.OK);
     }
 
     @PostMapping("/duple/email")

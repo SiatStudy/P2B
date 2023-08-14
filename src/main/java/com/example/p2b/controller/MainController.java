@@ -26,16 +26,14 @@ public class MainController {
 
     @GetMapping("/category")
     public @ResponseBody List<Product> mainPageByCategory(@RequestParam("category") int category){
-        System.out.println("cate : " + category);
         List<Product> categoryList = productService.findProductCategory(category);
-        List<Product> firstTenProducts = categoryList.subList(0, Math.min(categoryList.size(), 10));
-        System.out.println("fList : " + firstTenProducts);
-        return firstTenProducts;
+        return categoryList;
     }
 
     @GetMapping("/item")
-    public String mainPage3(@RequestParam("item") String item){
-        return "redirect:/users/main";
+    public @ResponseBody List<Product> mainPageByItem(@RequestParam("item") String item){
+        List<Product> itemList = productService.findProductName(item);
+        return itemList;
     }
 
     @GetMapping("/product")

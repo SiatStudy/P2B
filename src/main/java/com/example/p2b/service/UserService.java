@@ -35,22 +35,11 @@ public class UserService {
         // 1. dto -> entity 변환
         // 2. repository의 signUp 메서드 호출
         User user = User.toUser(userDTO);
-        user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
+//        user.setUserPassword(passwordEncoder.encode(user.getUserPassword())); // 비밀번호 암호화
+        user.setUserPassword(userDTO.getUserpassword()); // 암호화 안함
         user.setRole(User.Role.USER);
 
-        Email email = new Email();
-        email.setUser(user);
-
-        // 이메일 인증 시작시간을 현재 시간으로 설정
-        LocalDateTime vrCreate = LocalDateTime.now();
-        email.setVrCreate(vrCreate);
-
-        // 이메일 인증 종료시간을 시작시간 기준 3분 후로 설정
-        LocalDateTime vrExpire = vrCreate.plusMinutes(3);
-        email.setVrExpire(vrExpire);
-
         userRepository.save(user);
-        emailRepository.save(email);
         // repository의 signUp메서드 호출 (조건. entity객체를 넘겨줘야 함)
     }
 
